@@ -1,3 +1,4 @@
+import 'package:faceelawoo/detail.dart';
 import 'package:faceelawoo/loading2.dart';
 import 'package:flutter/material.dart';
 import 'woocommerce.dart';
@@ -111,10 +112,20 @@ class _HomeState extends State<Home> {
                                         ),
                                         color: Colors.redAccent[200],
                                         shape: new RoundedRectangleBorder(
-                                            borderRadius:
-                                                new BorderRadius.circular(
-                                                    30.0)),
-                                        onPressed: () {},
+                                          borderRadius:
+                                              new BorderRadius.circular(30.0),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => Details(),
+                                              settings: RouteSettings(
+                                                  arguments:
+                                                      snapshot.data[index]),
+                                            ),
+                                          );
+                                        },
                                       )
                                     ],
                                   ),

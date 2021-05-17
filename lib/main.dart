@@ -1,5 +1,4 @@
 import 'package:faceelawoo/home.dart';
-import 'package:faceelawoo/loading.dart';
 import 'package:flutter/material.dart';
 
 void main() {
