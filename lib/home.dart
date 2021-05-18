@@ -37,11 +37,11 @@ class _HomeState extends State<Home> {
         ),
         toolbarHeight: 100,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(30)),
+          borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(30)),
+              borderRadius: BorderRadius.all(Radius.circular(20)),
               image: DecorationImage(
                   image: AssetImage('assets/images/Transfile.jpeg'),
                   fit: BoxFit.fill)),
@@ -121,8 +121,8 @@ class _HomeState extends State<Home> {
                                             MaterialPageRoute(
                                               builder: (context) => Details(),
                                               settings: RouteSettings(
-                                                  arguments:
-                                                      snapshot.data[index]),
+                                                arguments: snapshot.data[index],
+                                              ),
                                             ),
                                           );
                                         },
