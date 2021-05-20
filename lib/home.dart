@@ -1,7 +1,9 @@
 import 'package:faceelawoo/detail.dart';
 import 'package:faceelawoo/loading2.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter_html/html_parser.dart';
 import 'woocommerce.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,38 +14,76 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      //appbar
-      appBar: AppBar(
-        leading: Icon(
-          Icons.menu,
-          size: 39,
+      //drawer*****
+      drawer: new Drawer(
+        child: new ListView(
+          children: <Widget>[
+            new DrawerHeader(
+              decoration: new BoxDecoration(
+                image: new DecorationImage(
+                  image: new ExactAssetImage('assets/images/faceela.png'),
+                  fit: BoxFit.cover,
+                ),
+              ),
+            ),
+            new ListTile(
+                leading: Icon(Icons.library_music),
+                title: new Text("Music"),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+            new ListTile(
+                leading: Icon(Icons.movie),
+                title: new Text("Movies"),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+            new ListTile(
+                leading: Icon(Icons.shopping_cart),
+                title: new Text("Shopping"),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+            new ListTile(
+                leading: Icon(Icons.apps),
+                title: new Text("Apps"),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+            new ListTile(
+                leading: Icon(Icons.dashboard),
+                title: new Text("Docs"),
+                onTap: () {
+                  Navigator.pop(context);
+                }),
+          ],
         ),
+      ),
+      backgroundColor: Colors.grey[100],
+      //appbar****
+      appBar: AppBar(
         actions: [
           IconButton(
               icon: Icon(
                 Icons.shopping_cart,
-                size: 30,
+                size: 25,
               ),
               onPressed: () {})
         ],
         centerTitle: true,
-        title: Text(
-          'Faceela shop',
-          style: TextStyle(
+        title: Text('Faceela shop',
+            style: GoogleFonts.koHo(
               fontSize: 30,
-              color: Colors.grey[100],
-              fontWeight: FontWeight.bold),
-        ),
-        toolbarHeight: 100,
+            )),
+        toolbarHeight: 60,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(5)),
         ),
         flexibleSpace: Container(
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(Radius.circular(20)),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
               image: DecorationImage(
-                  image: AssetImage('assets/images/Transfile.jpeg'),
+                  image: AssetImage('assets/images/purple.jpeg'),
                   fit: BoxFit.fill)),
         ),
       ),
@@ -98,19 +138,17 @@ class _HomeState extends State<Home> {
                                         style: TextStyle(
                                             fontSize: 19,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.red),
+                                            color: Colors.red[800]),
                                       ),
                                       SizedBox(
                                         height: 20,
                                       ),
                                       RaisedButton(
-                                        child: Text(
-                                          'see detailes',
-                                          style: TextStyle(
-                                              color: Colors.grey[200],
-                                              fontSize: 20),
-                                        ),
-                                        color: Colors.redAccent[200],
+                                        child: Text('see detailes',
+                                            style: GoogleFonts.ubuntu(
+                                                fontSize: 20,
+                                                color: Colors.white)),
+                                        color: Colors.deepPurple[400],
                                         shape: new RoundedRectangleBorder(
                                           borderRadius:
                                               new BorderRadius.circular(30.0),

@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:woocommerce/woocommerce.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:flutter_html/style.dart';
-import 'package:flutter_html/html_parser.dart';
+// import 'package:flutter_html/html_parser.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Details extends StatefulWidget {
   @override
@@ -16,11 +17,11 @@ class _DetailsState extends State<Details> {
     final WooProduct product = ModalRoute.of(context).settings.arguments;
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red[600],
-          title: Text(
-            product.name,
-            style: TextStyle(color: Colors.grey[200]),
-          ),
+          backgroundColor: Colors.deepPurple[400],
+          title: Text(product.name,
+              style: GoogleFonts.koHo(
+                fontSize: 20,
+              )),
         ),
         body: ListView(
           children: [
@@ -39,12 +40,9 @@ class _DetailsState extends State<Details> {
               height: 20,
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
-              child: Text(
-                'short description',
-                style: TextStyle(fontSize: 24),
-              ),
-            ),
+                padding: EdgeInsets.fromLTRB(20, 20, 0, 0),
+                child: Text('short description',
+                    style: GoogleFonts.actor(fontSize: 20))),
             Container(
                 alignment: Alignment.center,
                 padding: EdgeInsets.all(15),
@@ -69,11 +67,7 @@ class _DetailsState extends State<Details> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                FlatButton(
-                  color: Colors.red[400],
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: new BorderRadius.circular(20.0),
-                  ),
+                OutlinedButton.icon(
                   onPressed: () {
                     Navigator.push(
                       context,
@@ -85,11 +79,10 @@ class _DetailsState extends State<Details> {
                       ),
                     );
                   },
-                  child: Text(
-                    'full description',
-                    style: TextStyle(color: Colors.white, fontSize: 15),
-                  ),
-                ),
+                  icon: Icon(Icons.description, size: 20),
+                  label: Text("Full description",
+                      style: GoogleFonts.robotoMono(fontSize: 15)),
+                )
               ],
             ),
             SizedBox(
@@ -117,20 +110,20 @@ class _DetailsState extends State<Details> {
                     ),
                     child: Text(
                       '${product.price} US',
-                      style: TextStyle(color: Colors.grey[800], fontSize: 20),
+                      style: TextStyle(color: Colors.red[800], fontSize: 20),
                     ),
                   ),
-                  RaisedButton(
-                    color: Colors.blue[800],
-                    shape: new RoundedRectangleBorder(
-                      borderRadius: new BorderRadius.circular(10.0),
+                  ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(primary: Colors.red),
+                    onPressed: () {
+                      // Respond to button press
+                    },
+                    icon: Icon(Icons.shopping_cart_rounded, size: 25),
+                    label: Text(
+                      "Add to card",
+                      style: TextStyle(fontSize: 24),
                     ),
-                    onPressed: () {},
-                    child: Text(
-                      'Add to card',
-                      style: TextStyle(color: Colors.white, fontSize: 25),
-                    ),
-                  ),
+                  )
                 ],
               ),
             )
