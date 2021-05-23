@@ -1,148 +1,36 @@
-import 'package:faceelawoo/categories/categry.dart';
 import 'package:faceelawoo/detail.dart';
 import 'package:faceelawoo/loading2.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter_html/html_parser.dart';
-import 'woocommerce.dart';
+import 'package:faceelawoo/woocommerce.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:transparent_image/transparent_image.dart';
 
-class Home extends StatefulWidget {
+class Category extends StatefulWidget {
   @override
-  _HomeState createState() => _HomeState();
+  _CategoryState createState() => _CategoryState();
 }
 
-class _HomeState extends State<Home> {
+class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
+    final product_category = ModalRoute.of(context).settings.arguments;
     return Scaffold(
-      //drawer*****
-      drawer: new Drawer(
-        child: new ListView(
-          children: <Widget>[
-            new DrawerHeader(
-              decoration: new BoxDecoration(
-                image: new DecorationImage(
-                  image: new ExactAssetImage('assets/images/faceela.png'),
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            new ListTile(
-                leading: Icon(
-                  Icons.movie,
-                  color: Colors.green,
-                  size: 30,
-                ),
-                title: new Text("Audio & Television"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Category(),
-                      settings: RouteSettings(arguments: '51'),
-                    ),
-                  );
-                }),
-            Divider(),
-            new ListTile(
-                leading: Icon(
-                  Icons.camera_enhance,
-                  color: Colors.green,
-                  size: 30,
-                ),
-                title: new Text("Camera & Photo"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Category(),
-                      settings: RouteSettings(arguments: '60'),
-                    ),
-                  );
-                }),
-            Divider(),
-            new ListTile(
-                leading: Icon(
-                  Icons.style,
-                  color: Colors.green,
-                  size: 30,
-                ),
-                title: new Text("Clothing & Apparel"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Category(),
-                      settings: RouteSettings(arguments: '62'),
-                    ),
-                  );
-                }),
-            Divider(),
-            new ListTile(
-                leading: Icon(
-                  Icons.computer,
-                  color: Colors.green,
-                  size: 30,
-                ),
-                title: new Text("Computers & IT Accessories"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Category(),
-                      settings: RouteSettings(arguments: '63'),
-                    ),
-                  );
-                }),
-            Divider(),
-            new ListTile(
-                leading: Icon(
-                  Icons.monitor,
-                  color: Colors.green,
-                  size: 30,
-                ),
-                title: new Text("Monitors"),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Category(),
-                      settings: RouteSettings(arguments: '85'),
-                    ),
-                  );
-                }),
-          ],
-        ),
-      ),
       backgroundColor: Colors.grey[100],
       //appbar****
       appBar: AppBar(
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                      builder: (BuildContext context) => super.widget));
-            },
-            icon: Icon(Icons.refresh),
-            iconSize: 25,
-          ),
-          SizedBox(
-            width: 5,
-          ),
-          IconButton(
-              color: Colors.red[100],
               icon: Icon(
                 Icons.shopping_cart,
-                size: 30,
+                size: 25,
               ),
-              onPressed: () {}),
+              onPressed: () {})
         ],
         centerTitle: true,
         title: Text('Faceela shop',
             style: GoogleFonts.koHo(
-              fontSize: 26,
+              fontSize: 30,
             )),
         toolbarHeight: 60,
         shape: RoundedRectangleBorder(
@@ -159,7 +47,7 @@ class _HomeState extends State<Home> {
       body: Container(
         margin: EdgeInsets.fromLTRB(0, 9, 0, 0),
         child: FutureBuilder(
-            future: WoocommerceApi().getMyProducts(),
+            future: WoocommerceApi(category: product_category).getMyProducts(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               while (!snapshot.hasData) {
                 return Loading();
@@ -191,9 +79,8 @@ class _HomeState extends State<Home> {
                                 Container(
                                   padding: EdgeInsets.fromLTRB(5, 0, 5, 20),
                                   child: FadeInImage(
-                                    placeholder: AssetImage(
-                                      'assets/images/place2.png',
-                                    ),
+                                    placeholder:
+                                        AssetImage('assets/images/place2.png'),
                                     image: snapshot.data[index].images[0].src ==
                                             null
                                         ? AssetImage('assets/images/place2.png')
@@ -201,6 +88,7 @@ class _HomeState extends State<Home> {
                                             snapshot.data[index].images[0].src),
                                   ),
                                 ),
+
                                 // Image.network(
                                 //     snapshot.data[index].images[0].src),
                                 Padding(

@@ -28,6 +28,7 @@ dependencies:
   woocommerce: ^0.9.7
   flutter_html: ^1.0.0
   google_fonts: ^1.1.2
+  transparent_image: ^2.0.0
 
 
 
